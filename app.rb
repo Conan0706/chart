@@ -66,4 +66,13 @@ post "/score" do
     )
     redirect "/home"
 end
+
+post "/goal" do
+    user =User.find_by(id: current_user.id )
+    if user.goal
+        user.goal = params[:goal]
+        user.save
+    end
+    redirect "/home"
+end
     

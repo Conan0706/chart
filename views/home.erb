@@ -3,7 +3,9 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Home</title>
-	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@0.5.7/chartjs-plugin-annotation.min.js" 
+	  integrity="sha256-Olnajf3o9kfkFGloISwP1TslJiWUDd7IYmfC+GdCKd4=" crossorigin="anonymous"></script>
 </head>
 <body>
     <h1>ホーム画面</h1>
@@ -11,6 +13,12 @@
         <input type="date" name="date" placeholder="取組日">
         <input type ="number" name="score" placeholder="score">
         <input type="submit" value="登録">
+    </form>
+    <h3>目標値</h3>
+    <p>目標値：<%= @user.goal %></p>
+    <form action="/goal" method="post">
+      <input type="number" name="goal" placeholder="目標値">
+      <input type="submit" value="登録">
     </form>
     <% @scores.each do |score|%>
         <% if score.user_id == @user.id %>
@@ -26,6 +34,7 @@
     <%= @chart_date %>
     <%= @chart_score %>
     <p><%= @now_year %></p>
+    
     <script>
       window.onload = function () {
         let context = document.querySelector("#score_chart").getContext('2d')
@@ -36,15 +45,46 @@
             datasets: [{
               label: "Score",
               data: <%= @chart_score %>,
-              backgroundColor: ['#ffb6c1']
+              backgroundColor: '#dc143c',
+              borderColor: "#ffb6c1",
+              lineTension: 0,
+              fill: false, 
+              fontSize: 18,
             }],
           },
           options: {
             responsive: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        max: <%= @user.goal %> +1000,
+                    }
+                }]
+            },
+            annotation: {
+                    drawTime: 'afterDatasetsDraw',
+                    annotations: [
+                        {
+                            id: 'hline',
+                            type: 'line',
+                            mode: 'horizontal',
+                            scaleID: 'y-axis-0',
+                            value: <%= @user.goal %>,
+                            borderColor: 'black',
+                            borderWidth: 2,
+                            label: {
+                              enabled: true,
+                              content: <%= @user.goal.to_s %>,
+                              position: 'left',
+                              bordercolor: 'rgba(0,0,0,0)',
+                            },
+                        },
+                    ]
+                }
           }
         })
       }
     </script>
-    <canvas id="score_chart" width="500" height="500"></canvas>
+    <canvas class="chart" id="score_chart" width="800" height="500"></canvas>
 </body>
 </html>
