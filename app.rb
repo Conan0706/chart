@@ -49,7 +49,17 @@ end
         
 
 get "/home" do
+    @user = current_user
+    @scores = Score.all
     erb :home
 end
-    
+
+post "/score" do
+    score = Score.create(
+        user_id: current_user.id,
+        score: params[:score],
+        date: params[:date]
+    )
+    redirect "/home"
+end
     
