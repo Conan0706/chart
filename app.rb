@@ -3,6 +3,7 @@ Bundler.require
 require 'sinatra/reloader' if development?
 
 require "./models"
+require "date"
 
 enable :sessions
 
@@ -46,11 +47,14 @@ post "/signin" do
     end
     redirect "/home"
 end
-        
 
 get "/home" do
+    year = Date.today
+    @now_year = year.year.to_s + "年"
     @user = current_user
     @scores = Score.all
+    @chart_score = []
+    @chart_date = []
     erb :home
 end
 

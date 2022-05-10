@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Home</title>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
 </head>
 <body>
     <h1>ホーム画面</h1>
@@ -13,9 +14,37 @@
     </form>
     <% @scores.each do |score|%>
         <% if score.user_id == @user.id %>
-            <p><%= score.date %>></p>
-            <p><%= score.score %></p>
+          <% score_month = score.date.month %>
+          <% score_day = score.date.day %>
+          <% day = score_month.to_s + "-" + score_day.to_s %>
+          <% @chart_score.push(score.score) %>
+          <% @chart_date.push(day) %>
+          <p><%= score.date %></p>
+          <p><%= score.score %></p>
         <% end %>
     <% end %>
+    <%= @chart_date %>
+    <%= @chart_score %>
+    <p><%= @now_year %></p>
+    <script>
+      window.onload = function () {
+        let context = document.querySelector("#score_chart").getContext('2d')
+        new Chart(context, {
+          type: 'line',
+          data: {
+            labels: <%= @chart_date %>,
+            datasets: [{
+              label: "Score",
+              data: <%= @chart_score %>,
+              backgroundColor: ['#ffb6c1']
+            }],
+          },
+          options: {
+            responsive: false,
+          }
+        })
+      }
+    </script>
+    <canvas id="score_chart" width="500" height="500"></canvas>
 </body>
 </html>
