@@ -57,9 +57,15 @@
             scales: {
                 yAxes: [{
                     ticks: {
-                        max: <%= @user.goal %> +1000,
+                        max: <%= @user.goal %> +1000, // y軸メモリの最大値
                     }
-                }]
+                }],
+                xAxes: [{
+                  ticks: {
+                  autoSkip: true,
+                  maxTicksLimit: 5, //値の最大表示数
+                  }
+                }],
             },
             annotation: {
                     drawTime: 'afterDatasetsDraw',
@@ -69,14 +75,14 @@
                             type: 'line',
                             mode: 'horizontal',
                             scaleID: 'y-axis-0',
-                            value: <%= @user.goal %>,
-                            borderColor: 'black',
+                            value: <%= @user.goal %>, // 横線の値
+                            borderColor: 'black',  //横線の色
                             borderWidth: 2,
                             label: {
                               enabled: true,
-                              content: <%= @user.goal.to_s %>,
-                              position: 'left',
-                              bordercolor: 'rgba(0,0,0,0)',
+                              content: <%= @user.goal.to_s %>, // 横線に入れる文字
+                              position: 'left', // 横軸ラベルの場所
+                              bordercolor: 'rgba(0,0,0,0)', // ラベルの色
                             },
                         },
                     ]

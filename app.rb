@@ -4,6 +4,16 @@ require 'sinatra/reloader' if development?
 
 require "./models"
 require "date"
+require "google_drive"
+ 
+session = GoogleDrive::Session.from_config("config.json")
+
+sheets = session.spreadsheet_by_url("https://docs.google.com/spreadsheets/d/12YMejz2Va4jaIEFn-TjSFceVcz9Spj9oGaCeXr2PMhM/edit#gid=0")
+
+ws = sheets.worksheet_by_title("シート1")
+
+
+
 
 enable :sessions
 
@@ -15,6 +25,8 @@ end
 
 get "/" do
     @user = current_user
+    ws[1,1] = "hello world!!"
+    ws.save
     erb :index
 end
 
@@ -52,7 +64,8 @@ get "/home" do
     year = Date.today
     @now_year = year.year.to_s + "年"
     @user = current_user
-    @scores = Score.all
+    score = Score.all
+    @scores = Score.order(date: "ASC")
     @chart_score = []
     @chart_date = []
     erb :home
