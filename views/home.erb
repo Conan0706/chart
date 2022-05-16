@@ -76,13 +76,18 @@
                             mode: 'horizontal',
                             scaleID: 'y-axis-0',
                             value: <%= @user.goal %>, // 横線の値
-                            borderColor: 'black',  //横線の色
+                            borderColor: //横線の色
+                            <% if @chart_score.last >= current_user.goal %>
+                              'green', // 目標値を超えていた時の値
+                            <% else %>
+                              "black", // 目標値を超えていなかった時の値
+                            <% end %>
                             borderWidth: 2,
                             label: {
                               enabled: true,
                               content: <%= @user.goal.to_s %>, // 横線に入れる文字
                               position: 'left', // 横軸ラベルの場所
-                              bordercolor: 'rgba(0,0,0,0)', // ラベルの色
+                              bordercolor: 'rgba(255,0,0,1)', // ラベルの色
                             },
                         },
                     ]
