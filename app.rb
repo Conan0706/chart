@@ -64,6 +64,11 @@ post "/signin" do
     redirect "/home"
 end
 
+get "/signout" do
+    session[:user] = nil
+    redirect "/"
+end
+
 get "/home" do
     year = Date.today
     @now_year = year.year.to_s + "年"
