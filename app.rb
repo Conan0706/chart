@@ -109,4 +109,9 @@ post "/goal" do
     end
     redirect "/home"
 end
+
+post "/:id/edit" do
+   user = User.find_by(id: params[:id].id) 
+   
+end
     
