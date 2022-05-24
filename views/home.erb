@@ -17,9 +17,9 @@
     <a href="#inline" class="inline">プロフィール変更</a>
     
     <div id="inline" style="display:none;">
-     <form action="/<%= :@user %>/edit" method="post">
-       <input type="number" name="number" placeholder="番号">
-       <input type="text" name="name" placeholder="名前">
+     <form action="/<%= @user.id %>/edit" method="post">
+       <input type="number" name="number" placeholder="番号" value="<%= @user.number %>">
+       <input type="text" name="name" placeholder="名前" value="<%= @user.name %>">
        <input type="submit" value="登録">
      </form>
     </div>

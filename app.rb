@@ -21,6 +21,7 @@ helpers do
     def current_user
         User.find_by(id: session[:user])
     end
+        
 end
 
 get "/" do
@@ -116,7 +117,13 @@ post "/goal" do
 end
 
 post "/:id/edit" do
-   user = User.find_by(id: params[:id].id) 
-   
+   user = User.find_by(id: params[:id]) 
+   user.number = params[:number]
+   user.name = params[:name]
+   user.save
+   number = params[:number].to_i
+   ws[number,2] = params[:name]
+   ws.save
+   redirect "/home"
 end
     
