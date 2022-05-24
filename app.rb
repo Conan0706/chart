@@ -8,9 +8,9 @@ require "google_drive"
  
 g_session = GoogleDrive::Session.from_config("config.json")
 
-sheets = g_session.spreadsheet_by_url("https://docs.google.com/spreadsheets/d/12YMejz2Va4jaIEFn-TjSFceVcz9Spj9oGaCeXr2PMhM/edit#gid=0")
+sheets = g_session.spreadsheet_by_url("https://docs.google.com/spreadsheets/d/15o3o8djr9Uu49N4UvCQcU4X3YET_aCfmt6N_8zGs1-I/edit?usp=sharing")
 
-ws = sheets.worksheet_by_title("シート1")
+ws = sheets.worksheet_by_title("寿司打ログ")
 
 
 
@@ -47,7 +47,7 @@ post "/signup" do
             session[:user] = user.id
         end
         number = params[:number].to_i
-        ws[number,1] = params[:name]
+        ws[number,2] = params[:name]
         ws.save
         redirect "/home"
         
@@ -87,7 +87,7 @@ post "/score" do
         score: params[:score],
         date: params[:date]
     )
-    score_column = 2
+    score_column = 4
     number = current_user.number
     scores = Score.all
     scores.each do |score|
@@ -103,10 +103,15 @@ end
 
 post "/goal" do
     user =User.find_by(id: current_user.id )
+    number = current_user.number
     if user.goal
         user.goal = params[:goal]
         user.save
+        ws[number,3] = params[:goal]
+        ws.save
     end
+    
+    
     redirect "/home"
 end
 

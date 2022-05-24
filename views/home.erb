@@ -14,7 +14,7 @@
 <body>
     <h1>ホーム画面</h1>
     <h2><a href = "/signout" rel="">ログアウト</a></h2>
-    <a href="#inline" class="inline">ボタン</a>
+    <a href="#inline" class="inline">プロフィール変更</a>
     
     <div id="inline" style="display:none;">
      <form action="/<%= :@user %>/edit" method="post">
@@ -42,12 +42,10 @@
           <% day = score_month.to_s + "-" + score_day.to_s %>
           <% @chart_score.push(score.score) %>
           <% @chart_date.push(day) %>
-          <p><%= score.date %></p>
-          <p><%= score.score %></p>
+          <!--<p><%= score.date %></p>-->
+          <!--<p><%= score.score %></p>-->
         <% end %>
     <% end %>
-    <%= @chart_date %>
-    <%= @chart_score %>
     <p><%= @now_year %></p>
     
     <script>
@@ -92,13 +90,7 @@
                             scaleID: 'y-axis-0',
                             value: <%= @user.goal %>, // 横線の値
                             borderColor: //横線の色
-                            <% if !@chart_score.nil? %>
-                              <% if @chart_score.last >= current_user.goal %>
-                                'green', // 目標値を超えていた時の値
-                              <% else %>
-                                "black", // 目標値を超えていなかった時の値
-                              <% end %>
-                            <% end %>
+                              'green',
                             borderWidth: 2,
                             label: {
                               enabled: true,
