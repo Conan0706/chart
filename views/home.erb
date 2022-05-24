@@ -90,7 +90,11 @@
                             scaleID: 'y-axis-0',
                             value: <%= @user.goal %>, // 横線の値
                             borderColor: //横線の色
-                              'green',
+                                <% if !@chart_score.last.nil? && @chart_score.last >= current_user.goal %>
+                                  'green', // 目標値を超えていた時の値
+                                <% else %>
+                                  "black", // 目標値を超えていなかった時の値
+                                <% end %>
                             borderWidth: 2,
                             label: {
                               enabled: true,
