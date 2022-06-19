@@ -3,15 +3,48 @@
 <head>
 	<meta charset="UTF-8">
 	<title>SignUp</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>新規登録</h1>
-    <form action="/signup" method="post">
-        <input type="number" name="number" placeholder="メンターから渡された番号を登録">
-        <input type="text" name="name" placeholder="名前">
-        <input type= "password" name="password" placeholder="password">
-        <input type="password" name="password_confirmation" placeholder="パスワード確認">
-        <input type="submit" value="登録">
-    </form>
+    <div class="illust">
+        <div class="imagebox1 imagebox">
+            <div class="susi ikura"></div>
+            <div class="susi tamago"></div>
+        </div>
+        <div class="logo"></div>
+        <div class="imagebox2 imagebox">
+            <div class="susi ebi"></div>
+            <div class="susi maguro"></div>
+        </div>
+    </div>
+    <div class="writing">
+        <h2>新規登録</h2>
+        <div class="labels">
+            <form action="/signup" method="post">
+                <div class="label">
+                    <p class="caption">メンターからもらったコード</p>
+                    <input type="number" name="number" placeholder="メンターから渡された番号を登録" class="whitebox">
+                </div>
+                <div class="label">
+                    <p class="caption">ニックネーム</p>
+                    <input type="text" name="name" placeholder="ニックネーム" class="whitebox">
+                </div>
+                <div class="label">
+                    <p class="caption">パスワード</p>
+                    <input type= "password" name="password" placeholder="password" class="whitebox">
+                </div>
+                <div class="label">
+                    <p class="caption">パスワード(確認)</p>
+                    <input type="password" name="password_confirmation" placeholder="パスワード確認" class="whitebox">
+                </div>
+                <input type="submit" value="登録" class="button">
+            </form>
+        </div>
+    </div>
 </body>
 </html>
