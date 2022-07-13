@@ -11,6 +11,7 @@ body{
     width: 100vw;
     background: #00154D;
     position: relative;
+    overflow: hidden;
 }
 
 header{
@@ -24,11 +25,11 @@ header{
 .head-logo{
     position:absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
     z-index: 999;
-    width: 320px;
+    width: 280px;
     margin-top: 6px;
+    margin-left: 80px;
 }
 .navs{
     display: flex;
