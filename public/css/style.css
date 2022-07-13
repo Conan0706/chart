@@ -20,6 +20,8 @@ body{
     width: 710px;
     height: 95%;
     position: relative;
+    display: flex;
+    justify-content: center;
 }
 .writing{
     width: 530px;
@@ -62,6 +64,10 @@ body{
     background-image: url(../images/maguro.png);   
 }
 
+.logo{
+    align-self: center;
+}
+
 h2{
     font-size: 36px;
     margin-top: 80px;
@@ -101,13 +107,15 @@ a{
     padding: 5px 0;
     background-color: #00154D;
     color: #fff;
+    font-family: 'Zen Maru Gothic', sans-serif;
+    font-size: 26px;
 }
 
-.button p, input[value="Log in"]{
-    color: #fff;
-    font-family: 'Zen Maru Gothic', sans-serif;
-}
-.new{
+input[type=submit]{
     margin-top: 60px;
+}
+
+.new{
+    margin-top: 20px;
 }
 
