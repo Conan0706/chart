@@ -28,8 +28,8 @@ header{
     left: 0;
     z-index: 999;
     width: 280px;
-    margin-top: 6px;
-    margin-left: 80px;
+    margin-top: 30px;
+    margin-left: 40px;
 }
 .navs{
     display: flex;
@@ -137,28 +137,28 @@ img{
     z-index: -1;
 }
 .maguro{
-    top: 32px;
+    top: 162px;
     left: -110px;
 }
 .ika{
-    top: 304px;
+    top: 434px;
     left: 7px;
 }
 .ikura{
-    top: 559px;
+    top: 689px;
     left: -85px;
 }
 .salmon{
-    top: 23px;
+    top: 153px;
     right: -94px;
 }
 .tamago{
     right: 18px;
-    top: 304px;
+    top: 434px;
 }
 .ebi{
     right: -94px;
-    top: 575px;
+    top: 705px;
 }
 
 .chart {

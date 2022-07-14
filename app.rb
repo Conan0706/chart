@@ -86,11 +86,13 @@ get "/home" do
 end
 
 post "/score" do
-    score = Score.create(
-        user_id: current_user.id,
-        score: params[:score],
-        date: params[:date]
-    )
+    if params[:score] != "" && params[:date] != ""
+        score = Score.create(
+            user_id: current_user.id,
+            score: params[:score],
+            date: params[:date]
+        )
+    end
     score_column = 4
     number = current_user.number
     scores = Score.all
@@ -108,7 +110,7 @@ end
 post "/goal" do
     user =User.find_by(id: current_user.id )
     number = current_user.number
-    if user.goal
+    if user.goal && params[:goal] != ""
         user.goal = params[:goal]
         user.save
         ws[number,3] = params[:goal]

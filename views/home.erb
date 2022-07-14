@@ -35,14 +35,16 @@
          <input type="submit" value="登録">
        </form>
       </div>
-      <% @scores.each do |score|%>
-          <% if score.user_id == @user.id %>
-            <% score_month = score.date.month %>
-            <% score_day = score.date.day %>
-            <% day = score_month.to_s + "-" + score_day.to_s %>
-            <% @chart_score.push(score.score) %>
-            <% @chart_date.push(day) %>
-          <% end %>
+      <% if !@scores.nil? %>
+        <% @scores.each do |score|%>
+            <% if score.user_id == @user.id %>
+              <% score_month = score.date.month %>
+              <% score_day = score.date.day %>
+              <% day = score_month.to_s + "-" + score_day.to_s %>
+              <% @chart_score.push(score.score) %>
+              <% @chart_date.push(day) %>
+            <% end %>
+        <% end %>
       <% end %>
       <div class="contents">
         <div class="kiroku">
