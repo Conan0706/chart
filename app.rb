@@ -131,4 +131,37 @@ post "/:id/edit" do
    ws.save
    redirect "/home"
 end
-    
+
+get "/pass_change" do
+    erb :pass
+end
+
+get "/pass" do
+    @change_name = session[:name]
+    erb :pass_change
+end
+
+post "/name" do
+    users = User.all
+    if params[:name_conf]
+       
+        users.each do |user|
+            if user.name == params[:name_conf]
+                session[:name] = params[:name_conf]
+                redirect "/pass"
+            end
+        end
+    end
+    redirect "/pass_change"
+end
+
+post "/pass_reg" do
+    change_user = User.find_by(name: session[:name])
+    if params[:password] && params[:password_confirmation]
+        change_user.password = params[:password]
+        change_user.password_confirmation = params[:password_confirmation]
+        change_user.save
+        redirect "/"
+    end
+    redirect "/pass"
+end

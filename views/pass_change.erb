@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-	<meta charset="UTF-8">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>Name</title>
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
     <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap" rel="stylesheet">
@@ -24,26 +23,25 @@
         </div>
     </div>
     <div class="writing">
-        <h2>ログイン</h2>
+        <h2><%= @change_name %></h2>
+                
         <div class="labels">
-			<form action="/signin" method="post">
-				<div class="label">
-                	<p class="caption">ニックネーム</p>
-                	<input type="text" name="name" placeholder="名前" class="whitebox">
-            	</div>
-	            <div class="label">
-	                <p class="caption">パスワード</p>
-	                <input type="password" name="password" placeholder = "パスワード" class="whitebox" >
-	            </div>				
-				<input type="submit" value="Log in" class="button">
-			</form>
+            <form action ="/pass_reg" method ="post">
+                <div class="label inner2">
+                    <p class="caption">
+                        パスワード
+                    </p>
+                    <input type="password" name ="password" placeholder="パスワード" required = "required" class="whitebox">
+                </div>
+                <div class="label">
+                    <p class="caption">
+                        パスワード確認
+                    </p>
+                    <input type ="password" name ="password_confirmation" placeholder="パスワード確認" required = "required" class="whitebox">
+                </div>
+                <input type="submit" value="更新" class="button">
+            </form>
         </div>
-        <a href="/signup" class="new">
-            <div class="button">
-                <p>新規登録</p>
-            </div>
-        </a>
-        <a href = "/pass_change" class="pass_guide"><p>パスワードを忘れた人はこちら</p></a> 
     </div>
+    
 </body>
-</html>
