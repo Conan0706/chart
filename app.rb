@@ -157,7 +157,7 @@ end
 
 post "/pass_reg" do
     change_user = User.find_by(name: session[:name])
-    if params[:password] && params[:password_confirmation]
+    if params[:password] == params[:password_confirmation]
         change_user.password = params[:password]
         change_user.password_confirmation = params[:password_confirmation]
         change_user.save
