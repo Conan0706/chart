@@ -203,3 +203,17 @@ input[type=date] {
     margin-left: 15%;
     font-size: 30px;
 }
+
+.message{
+    /*display: inline-block;*/
+    text-align:center;
+    color: white;
+    /*margin-left:500px;*/
+    padding-bottom:50px;
+    /*transform: rotate(-5deg);*/
+}
+
+.message p{
+    
+    font-size: 15px;
+}
